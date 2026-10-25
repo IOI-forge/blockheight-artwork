@@ -10,18 +10,19 @@ Read `README.md`, `docs/getting-started.md`, `docs/art-engine.md` and this file 
 - `palettes.ts`, `geometry.ts`, `annotations.ts`, `event-layout.ts`: palette, mesh, label and event placement helpers.
 - `digest.ts`: supplied block-data contract and structural validation. It does not authenticate blockchain data.
 - `studio-defaults.ts`: options used by the runnable example.
-- `scripts/render.mjs`: JSON input to SVG/file example; `scripts/typescript-loader.mjs`: Node 24 import resolver for upstream `.js` specifiers targeting `.ts` sources.
+- `scripts/render.mjs`: JSON recipe to SVG file (`npm run render -- input.json [output.svg]`); `scripts/typescript-loader.mjs`: Node 24 import resolver for upstream `.js` specifiers targeting `.ts` sources.
 - `docs/provenance.json`: original upstream tree and Git blob IDs. These identify the extraction baseline, not future edited contents.
 
 No wallet, RPC client, database, payment, minting, server, PNG rasterizer or browser studio is included. `composition: chain` means connected visual blocks; it does not enable blockchain access. Version 3 requires a digest; version 4 accepts one optionally.
 
 ## Commands and validation
 
-Use Node 24 and npm. No installation, credentials, build or dependency downloads are needed.
+Use Node 24 or newer and npm. No installation, credentials, build or dependency downloads are needed.
 
 ```sh
 npm test
 npm run render
+npm run render -- examples/synthetic-digest.json examples/synthetic-digest.svg
 git diff --exit-code -- examples/
 git diff --check
 ```
@@ -40,4 +41,4 @@ For a new option, review schema/defaults, validation, versioned behavior, docume
 
 The copied tests cover versions 1 and 2, annotations, geometry, event layout and formatting. `tests/versions.test.ts` adds the upstream version-4 plain golden hash and synthetic digest tests for versions 3 and 4. The original comprehensive art3/art4 suites depended on upstream chain classification and raw block fixtures and were not extracted. Do not claim equivalent coverage or full upstream verification.
 
-The old browser prototype, branding/reference images and all private application history were excluded. Consult `docs/extraction-plan.md` for publication status. `private: true` in package.json prevents accidental npm publication; it does not prevent a public GitHub repository. MIT applies to this repository's code, docs and example outputs, not automatically to other Blox assets or trademarks.
+The old browser prototype, branding/reference images and all private application history were excluded. Consult `docs/extraction-plan.md` for extraction scope. `private: true` in package.json prevents accidental npm publication; it does not prevent a public GitHub repository. MIT applies to this repository's code, docs and example outputs, not automatically to other Blox assets or trademarks.

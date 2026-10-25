@@ -1,6 +1,6 @@
 # Validation record
 
-Verified locally on 2026-10-24 with Node v24.19.0.
+Initial import verified locally on 2026-10-24 with Node v24.19.0. Re-checked on 2026-10-25 with Node v24.22.1 and v26.12.1: all 44 tests passed and both examples rendered byte for byte.
 
 ## Executed checks
 
@@ -10,6 +10,7 @@ Verified locally on 2026-10-24 with Node v24.19.0.
 - The beginner workflow was exercised: copy the default recipe, change palette to `c7`, composition to `chain` and ground to `grid`, then render the custom input. The SVG changed and its accompanying JSON matched the supplied recipe. Rendering without arguments restored the original SVG bytes.
 - All 16 copied source/test files match the original Git blob IDs recorded in `provenance.json`.
 - Relative Markdown links resolve to existing local files.
+- `examples/synthetic-digest.json` renders a `blockheight-4` artwork with made-up digest data, annotations and the tiled event layout; its SVG was checked visually in Chromium.
 
 Node's test-runner output in this environment summarizes seven test files. Running the files directly also verified the 44 individual test cases within them.
 
@@ -19,4 +20,4 @@ Runtime tests use Node's native TypeScript stripping. They do not perform static
 
 Original upstream art3/art4 integration suites depended on chain classification and raw block fixtures and were not included. Standalone coverage includes the original version-4 plain SVG golden hash and synthetic digest tests for versions 3/4, but is not equivalent to those larger upstream suites. Synthetic digests are test data, not authenticated block records.
 
-GitHub Actions configuration is included, but a remote CI run has not occurred. The publication target is `IOI-forge/blockheight-artwork`, branch `main`; see `extraction-plan.md`. No upstream application files or private Git history are included.
+GitHub Actions runs `npm test`, renders both examples and fails if they differ from the committed files. The first run on `main` passed. CI uses Node 24 only. No upstream application files or private Git history are included.

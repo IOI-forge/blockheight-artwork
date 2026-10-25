@@ -12,4 +12,5 @@ jobs:
           node-version: 24
       - run: npm test
       - run: npm run render
+      - run: npm run render -- examples/synthetic-digest.json examples/synthetic-digest.svg
       - run: git diff --exit-code -- examples/
